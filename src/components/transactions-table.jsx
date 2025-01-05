@@ -59,14 +59,14 @@ function TransactionsTable({ data }) {
   });
 
   const columns = [
-    { label: "X", width: '5%', accessor: "" },
-    { label: "Line", width: '5%', accessor: "index" },
-    { label: "Date", width: '10%', accessor: "book_date" },
-    { label: "From", width: '20%', accessor: "from" },
-    { label: "To",   width: '20%', accessor: "to" },
-    { label: "Note", width: '20%', accessor: "note" },
-    { label: "Amount", width: '10%', accessor: "amount" },
-    { label: "Balance", width: '10%', accessor: "balance" },
+    { label: "", accessor: "" },
+    { label: "Line", accessor: "index" },
+    { label: "Date", accessor: "book_date" },
+    { label: "From", accessor: "from" },
+    { label: "To", accessor: "to" },
+    { label: "Note", accessor: "note" },
+    { label: "Amount", accessor: "amount" },
+    { label: "Balance", accessor: "balance" },
   ];
 
   return (
@@ -84,7 +84,9 @@ function TransactionsTable({ data }) {
           <tbody key={transaction.hash}>
             <tr>
               <td className="border border-black text-center">
-                <input type='checkbox' value="false" onChange={() => handleCheckboxChange(transaction)} />
+                {transaction.index > 2 && (
+                  <input type='checkbox' value="false" onChange={() => handleCheckboxChange(transaction)} />
+                )}
               </td>
               <td className="border border-black px-4 py-4 text-right">{transaction.index}</td>
               <td className="border border-black px-4 py-4">
@@ -117,20 +119,21 @@ function TransactionsTable({ data }) {
               <th className='border border-black px-4 py-4 text-right'>Amount</th>
             </tr>
           </thead>
+          <tbody>
           {selected && selected.map((transaction, idx) => (
-            <tbody>
             <tr key={idx}>
               <td className='border border-black px-4 py-4'>{transaction.to.length > 20 ? transaction.to.slice(0, 20) + "..." : transaction.to}</td>
               <td className='border border-black px-4 py-4 text-right'>{transaction.amount.toFixed(2)}</td>
             </tr>
-
-            <tr>
-              <td className="border border-black px-4 py-4">Total:</td>
-              <td className="border border-black px-4 py-4 text-right">{getSelectedTotal()}</td>
-            </tr>
-
-            </tbody>
           ))}
+
+          {selected && (
+          <tr>
+            <td className="border border-black px-4 py-4">Total:</td>
+            <td className="border border-black px-4 py-4 text-right">{getSelectedTotal()}</td>
+          </tr>
+          )}
+          </tbody>
         </table>
       </div>
     </div>
