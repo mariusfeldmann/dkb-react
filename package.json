@@ -2,6 +2,7 @@
   "name": "dkb-react",
   "version": "0.1.0",
   "private": true,
+  "homepage": "dkb-react",
   "dependencies": {
     "@tanstack/react-query": "^5.56.2",
     "@testing-library/jest-dom": "^5.17.0",
