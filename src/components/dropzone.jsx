@@ -15,7 +15,7 @@ const MyDropzone = ( onFileRead ) => {
       };
       reader.readAsText(file);
     });
-  }, []);
+  }, [onFileRead]);
 
   const { getRootProps, getInputProps } = useDropzone({ onDrop });
 

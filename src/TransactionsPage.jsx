@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import {Decimal} from 'decimal.js';
 import MyDropzone from './components/dropzone';
 import TransactionsTable from './components/transactions-table'
